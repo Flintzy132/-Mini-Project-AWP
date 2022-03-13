@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
+<body ng-app='myApp' ng-controller="myCtrl">
+    <style>
+        .header {
+            text-align: center;
+
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: gray;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+        }
+
+        .welcome {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .date-and-time {
+            text-align: center;
+            margin: auto;
+            width: 50%;
+            border: 3px solid black;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .bck-image {
+            background-image: url(home.jfif);
+            background-size: cover;
+        }
+    </style>
+    <div style="background-clip: padding-box;">
+        <div class="header">
+            <h1>E-Ticket Reservation And Booking</h1>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#Book Tickets">Book-A-Ticket</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="registration.php">SignUp</a></li>
+            <li style="float:right"><a class="active" href="#User">User</a></li>
+        </ul>
+    </div>
+    <div class="bck-image">
+        <div class="welcome">
+            <h2>Welcome to the Page</h2>
+        </div>
+        <div class="date-and-time" style="width: 500px;">
+            <div ng-app="myApp" ng-controller="myCtrl">
+                <b>
+                    <p>The date is:{{ today | date }}</p>
+                </b>
+                <b>
+                    <p>The time is:{{theTime}}</p>
+                </b>
+            </div>
+        </div>
+        <div style="width: 100%; padding-top: 40px;">
+            <div style="height: 300px; padding-top: 10px;">
+                <h2 style=" text-align: center;">Check Your Travel Details</h2>
+                <div class="xml" style="width: 100%;text-align: center;">
+                    <div class="button">
+                        <button onclick="myfunc()" style="width: 100px;height: 50px;">Get</button>
+                    </div>
+                    <div class="demo" style="text-align: center;">
+                        <b><table id="demo1" style="width: 100%; height: 100%;float: right;color:white;padding-top: 20px;"></table></b>
+                    </div>
+                </div>
+            </div>
+            <div class="select">
+                <div class="window" ng-app="myApp" ng-controller="MyController" style="text-align: center;">
+                    <div style="width:100%; float: left; text-align: center; padding-top: 10px; padding-bottom: 20px;">
+                        <h2>Book A Ticket</h2>
+                        <b><label for="Travel-Date">Travel-Date:</label></b>
+                        <input type="date" id="exampleInput" name="input" ng-model="date" placeholder="yyyy-MM-dd"
+                            required />
+                    </div>
+                    <b><label for="cars">Choose a Source:</label></b>
+                    <select id="cars" name="cars" ng-model="src">
+                        <option value="CSMT">CSMT</option>
+                        <option value="Bandra">Bandra</option>
+                        <option value="Borivali">Borivali</option>
+                        <option value="thane">Thane</option>
+                    </select>
+                    <b><label for="cars">Choose a Destination:</label></b>
+                    <select id="cars" name="cars" ng-model="des">
+                        <option value="Delhi">Delhi</option>
+                        <option value="Gujrat">Gujrat</option>
+                        <option value="Ratnagiri">Ratnagiri</option>
+                        <option value="Goa">Goa</option>
+                    </select>
+                    <button type="button" name="button" ng-click="save(name)">Go</button><br><br>
+                    <b><table ng-show="IsVis" style="width:100%; border:1px solid white;color:white;">
+                        <tr>
+                            <th>Train No</th>
+                            <th>Train Name</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                            <th>Travel Time</th>
+                            <th>Travel Days</th>
+                            <th>Available Classes</th>
+                            <th>Date</th>
+                        </tr>
+                        <tr>
+                            <td>12904</td>
+                            <td>Golden Temple ML</td>
+                            <td>{{src}}</td>
+                            <td>{{des}}</td>
+                            <td>21:40</td>
+                            <td>M,T,W,Sa</td>
+                            <td>1A , 2A</td>
+                            <td>{{date |date: "yyyy-MM-dd"}}</td>
+                        </tr>
+                        <tr>
+                            <td>02264</td>
+                            <td>Dyanamic Fare Ex</td>
+                            <td>{{src}}</td>
+                            <td>{{des}}</td>
+                            <td>17:00</td>
+                            <td>W,T,F</td>
+                            <td>3A , SL</td>
+                            <td>{{date |date: "yyyy-MM-dd"}}</td>
+                        </tr>
+                        <tr>
+                            <td>12910</td>
+                            <td>BDTS Garib Rath</td>
+                            <td>{{src}}</td>
+                            <td>{{des}}</td>
+                            <td>16:30</td>
+                            <td>M,T,T,F</td>
+                            <td>2A</td>
+                            <td>{{date |date: "yyyy-MM-dd"}}</td>
+                        </tr>
+                        <tr>
+                            <td>12952</td>
+                            <td>Mumbai Rajdhani</td>
+                            <td>{{src}}</td>
+                            <td>{{des}}</td>
+                            <td>16:05</td>
+                            <td>T,F</td>
+                            <td>1A,2A,3A,SL</td>
+                            <td>{{date |date: "yyyy-MM-dd"}}</td>
+                        </tr>
+                    </table></b>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br><br>
+    <div class="footer">
+        <footer>
+            <p>© 2021 Copyright: <a href="app.component.html" style="text-decoration: none; color: black;"> Site </a></p>
+        </footer>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope, $interval) {
+            $scope.theTime = new Date().toLocaleTimeString();
+            $interval(function () {
+                $scope.theTime = new Date().toLocaleTimeString();
+            }, 1000);
+            $scope.today = new Date();
+        });
+        app.controller('MyController', function ($scope) {
+            //This will hide the DIV by default.
+            $scope.IsVis = false;
+            $scope.save = function () {
+                //If DIV is visible it will be hidden and vice versa.
+                $scope.IsVis = $scope.IsVis ? false : true;
+            }
+        });
+
+        function myfunc() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+                    empDetails(this);
+                }
+            };
+            xmlhttp.open("GET", "employee.xml", true);
+            xmlhttp.send();
+        }
+
+        function empDetails(xml) {
+			var i;
+			var xmlDoc = xml.responseXML;
+			var table =
+				`<tr><th>Firstname</th><th>Lastname</th>
+					<th>Title</th><th>Division</th>
+					<th>Building</th><th>Room</th>
+				</tr>`;
+			var x = xmlDoc.getElementsByTagName("employee");
+
+			// Start to fetch the data by using TagName
+			for (i = 0; i < x.length; i++) {
+				table += "<tr><td>" +
+					x[i].getElementsByTagName("firstname")[0]
+					.childNodes[0].nodeValue + "</td><td>" +
+					x[i].getElementsByTagName("lastname")[0]
+					.childNodes[0].nodeValue + "</td><td>" +
+					x[i].getElementsByTagName("title")[0]
+					.childNodes[0].nodeValue + "</td><td>" +
+					x[i].getElementsByTagName("division")[0]
+					.childNodes[0].nodeValue + "</td><td>" +
+					x[i].getElementsByTagName("building")[0]
+					.childNodes[0].nodeValue + "</td><td>" +
+					x[i].getElementsByTagName("room")[0]
+					.childNodes[0].nodeValue + "</td></tr>";
+			}
+
+			// Print the xml data in table form
+			document.getElementById("demo1").innerHTML = table;
+		}
+    </script>
+</body>
+
+</html>
